@@ -17,36 +17,9 @@ touch lib/constants/sizes.dart
 
 echo "✅ Structure created successfully!"
 
+echo "<>..................................................Creating Your Code --------------------------------------------------------------------------------"
 
-echo "<>..................................................Createting Your Code --------------------------------------------------------------------------------"
+# GitHub থেকে codehere.sh নামের স্ক্রিপ্ট ডাউনলোড করে রান করানো
+curl -sSL https://raw.githubusercontent.com/RakibulIslam10/Structure-Auto/main/codehere.sh | bash
 
-cat <<EOF> lib/constants/sizes.dart
-
-import 'package:flutter/cupertino.dart';
-
-class RakibVaiDone extends StatefulWidget {
-  const RakibVaiDone({super.key});
-
-  @override
-  State<RakibVaiDone> createState() => _RakibVaiDoneState();
-}
-
-class _RakibVaiDoneState extends State<RakibVaiDone> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-EOF
-
-echo "--------------------------------------------------------done--------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
+echo "--------------------------------------------------------done--------------------------------------------------------------------"
