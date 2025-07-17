@@ -1,25 +1,37 @@
 #!/bin/bash
 
-echo "🚀 Creating project structure..."
+echo "🚀 Creating Flutter project structure with GetX architecture..."
 
-mkdir -p lib/views
-mkdir -p lib/controllers
-mkdir -p lib/bindings
-mkdir -p lib/widgets
-mkdir -p lib/models
-mkdir -p lib/services
-mkdir -p lib/utils
-mkdir -p lib/constants
+# Define folder list
+folders=(
+  views
+  controllers
+  bindings
+  widgets
+  models
+  services
+  utils
+  constants
+)
 
+# Create each folder and add placeholder .dart file
+for folder in "${folders[@]}"; do
+  mkdir -p "lib/$folder"
+  echo "// Placeholder for $folder" > "lib/$folder/temp.dart"
+done
+
+# Create actual constant files
 touch lib/constants/custom_colors.dart
 touch lib/constants/dimensions.dart
 touch lib/constants/sizes.dart
 
 echo "✅ Structure created successfully!"
 
-echo "<>..................................................Creating Your Code --------------------------------------------------------------------------------"
+echo
+echo "🔗 Downloading and running remote code from GitHub..."
+echo "<>........................................................................Creating Your Code.............................................................."
 
-# GitHub থেকে codehere.sh নামের স্ক্রিপ্ট ডাউনলোড করে রান করানো
+# Download and run codehere.sh from GitHub
 curl -sSL https://raw.githubusercontent.com/RakibulIslam10/Structure-Auto/main/codehere.sh | bash
 
-echo "--------------------------------------------------------done--------------------------------------------------------------------"
+echo "----------------------------------------------------------------- ✅ Done ----------------------------------------------------------------------"
