@@ -1,0 +1,61 @@
+#!/bin/bash
+
+echo "📦 Creating home module structure..."
+
+# Create folder structure
+mkdir -p lib/modules/home/controller
+mkdir -p lib/modules/home/view
+mkdir -p lib/modules/home/binding
+
+# Create home_controller.dart with custom code
+cat <<'EOF' > lib/modules/home/controller/home_controller.dart
+import 'package:get/get.dart';
+
+class HomeController extends GetxController {
+  var count = 0.obs;
+
+  void increment() {
+    count++;
+  }
+}
+EOF
+
+# Create home_view.dart with custom code
+cat <<'EOF' > lib/modules/home/view/home_view.dart
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../controller/home_controller.dart';
+
+class HomeView extends StatelessWidget {
+  final HomeController controller = Get.put(HomeController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Home')),
+      body: Center(
+        child: Obx(() => Text('Count: \${controller.count}')),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: controller.increment,
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+EOF
+
+# Create home_binding.dart with custom code
+cat <<'EOF' > lib/modules/home/binding/home_binding.dart
+import 'package:get/get.dart';
+import '../controller/home_controller.dart';
+
+class HomeBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => HomeController());
+  }
+}
+EOF
+
+echo "✅ Home module created successfully!"
