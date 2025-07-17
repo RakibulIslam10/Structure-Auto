@@ -31,7 +31,7 @@ echo
 echo "🔗 Downloading and running remote code from GitHub..."
 echo "<>........................................................................Creating Your Code.............................................................."
 
-# Download and run codehere.sh from GitHub
-curl -sSL https://raw.githubusercontent.com/RakibulIslam10/Structure-Auto/main/codehere.sh | bash
+# # Download and run codehere.sh from GitHub
+# curl -sSL https://raw.githubusercontent.com/RakibulIslam10/Structure-Auto/main/codehere.sh | bash
 
 echo "----------------------------------------------------------------- ✅ Done ----------------------------------------------------------------------"
