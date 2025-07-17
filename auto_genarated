@@ -1,61 +1,55 @@
 #!/bin/bash
 
-echo "📦 Creating home module structure..."
+read -p "📝 Enter screen/view name: " screen_name
 
-# Create folder structure
-mkdir -p lib/modules/home/controller
-mkdir -p lib/modules/home/view
-mkdir -p lib/modules/home/binding
+base_dir="lib/views/$screen_name"
 
-# Create home_controller.dart with custom code
-cat <<'EOF' > lib/modules/home/controller/home_controller.dart
+echo "📁 Creating folder structure under $base_dir..."
+
+mkdir -p "$base_dir/controller"
+mkdir -p "$base_dir/screen"
+mkdir -p "$base_dir/widget"
+
+# Controller
+cat <<EOF > "$base_dir/controller/${screen_name}_controller.dart"
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  var count = 0.obs;
-
-  void increment() {
-    count++;
-  }
+class ${screen_name^}Controller extends GetxController {
+  // TODO: Implement controller logic
 }
 EOF
 
-# Create home_view.dart with custom code
-cat <<'EOF' > lib/modules/home/view/home_view.dart
+# Screen
+cat <<EOF > "$base_dir/screen/${screen_name}_screen.dart"
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controller/home_controller.dart';
+import '../controller/${screen_name}_controller.dart';
 
-class HomeView extends StatelessWidget {
-  final HomeController controller = Get.put(HomeController());
+class ${screen_name^}Screen extends StatelessWidget {
+  final controller = Get.put(${screen_name^}Controller());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
-      body: Center(
-        child: Obx(() => Text('Count: \${controller.count}')),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: controller.increment,
-        child: Icon(Icons.add),
-      ),
+      appBar: AppBar(title: Text('${screen_name^} Screen')),
+      body: Center(child: Text('Welcome to ${screen_name^}')),
     );
   }
 }
 EOF
 
-# Create home_binding.dart with custom code
-cat <<'EOF' > lib/modules/home/binding/home_binding.dart
-import 'package:get/get.dart';
-import '../controller/home_controller.dart';
+# Widget
+cat <<EOF > "$base_dir/widget/${screen_name}_widget.dart"
+import 'package:flutter/material.dart';
 
-class HomeBinding extends Bindings {
+class ${screen_name^}Widget extends StatelessWidget {
   @override
-  void dependencies() {
-    Get.lazyPut(() => HomeController());
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text('${screen_name^} Widget Placeholder'),
+    );
   }
 }
 EOF
 
-echo "✅ Home module created successfully!"
+echo "✅ Screen '$screen_name' created successfully in lib/views/"
