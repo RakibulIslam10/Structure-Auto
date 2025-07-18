@@ -1,5 +1,4 @@
-#!/bin/bash
-# Fix Windows line endings if present (run once on this script file)
+#!/usr/bin/env bash
 sed -i 's/\r$//' "$0"
 
 BASE_DIR="lib"
