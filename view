@@ -1,0 +1,40 @@
+#!/bin/bash
+
+for viewName in "$@"; do
+  base_dir="lib/views/$viewName"
+  echo "📦 Generating view: $viewName"
+
+  mkdir -p "$base_dir/controller"
+  mkdir -p "$base_dir/screen"
+  mkdir -p "$base_dir/widget"
+
+  # Controller
+  cat <<EOF > "$base_dir/controller/${viewName}_controller.dart"
+import 'package:get/get.dart';
+
+class ${viewName^}Controller extends GetxController {
+  // TODO: Add logic
+}
+EOF
+
+  # Screen
+  cat <<EOF > "$base_dir/screen/${viewName}_screen.dart"
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../controller/${viewName}_controller.dart';
+
+class ${viewName^}Screen extends StatelessWidget {
+  final controller = Get.put(${viewName^}Controller());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('${viewName^}')),
+      body: Center(child: Text('${viewName^} Screen')),
+    );
+  }
+}
+EOF
+
+  echo "✅ View '$viewName' created!"
+done
