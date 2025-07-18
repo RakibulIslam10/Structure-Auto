@@ -1,6 +1,12 @@
 #!/bin/bash
 
+# Function: capitalize first letter
+capitalize() {
+  echo "$1" | awk '{ print toupper(substr($0,1,1)) tolower(substr($0,2)) }'
+}
+
 for viewName in "$@"; do
+  capitalizedViewName=$(capitalize "$viewName")
   base_dir="lib/views/$viewName"
   echo "📦 Generating view: $viewName"
 
@@ -12,32 +18,32 @@ for viewName in "$@"; do
   cat <<EOF > "$base_dir/controller/${viewName}_controller.dart"
 import 'package:get/get.dart';
 
-class ${viewName^}Controller extends GetxController {
+class ${capitalizedViewName}Controller extends GetxController {
   // TODO: Add logic
 }
 EOF
 
-  # Screen mobile part
+  # Mobile Screen Part
   cat <<EOF > "$base_dir/screen/${viewName}_mobile_screen.dart"
 part of "${viewName}_screen.dart";
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ${viewName^}Screen extends StatelessWidget {
-  final controller = Get.put(${viewName^}Controller());
+class ${capitalizedViewName}Screen extends StatelessWidget {
+  final controller = Get.put(${capitalizedViewName}Controller());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('${viewName^}')),
-      body: Center(child: Text('${viewName^} Screen')),
+      appBar: AppBar(title: Text('${capitalizedViewName}')),
+      body: Center(child: Text('${capitalizedViewName} Screen')),
     );
   }
 }
 EOF
 
-  # Screen main file
+  # Main Screen File
   cat <<EOF > "$base_dir/screen/${viewName}_screen.dart"
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,18 +51,18 @@ import '../controller/${viewName}_controller.dart';
 
 part "${viewName}_mobile_screen.dart";
 
-class ${viewName^}Screen extends StatelessWidget {
-  final controller = Get.put(${viewName^}Controller());
+class ${capitalizedViewName}Screen extends StatelessWidget {
+  final controller = Get.put(${capitalizedViewName}Controller());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('${viewName^}')),
-      body: Center(child: Text('${viewName^} Screen')),
+      appBar: AppBar(title: Text('${capitalizedViewName}')),
+      body: Center(child: Text('${capitalizedViewName} Screen')),
     );
   }
 }
 EOF
 
-  echo "✅ View '$viewName' created successfully!"
+  echo "✅ View '$viewName' created successfully in structure: views/$viewName/"
 done
