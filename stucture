@@ -1,39 +1,50 @@
 #!/bin/bash
 
-# Target base folder
 BASE_DIR="lib"
 
 echo "📁 Creating base structure in $BASE_DIR ..."
 
-# ───── Bindings ─────
+# Bindings
 mkdir -p $BASE_DIR/bind
 touch $BASE_DIR/bind/home_binding.dart
 touch $BASE_DIR/bind/next_binding.dart
 touch $BASE_DIR/bind/splash_bindings.dart
+touch $BASE_DIR/bind/.keep
 
-# ───── Core folders ─────
-mkdir -p $BASE_DIR/core/{api,helpers,languages,themes,utils}
+# Core folders
+mkdir -p $BASE_DIR/core/api
+mkdir -p $BASE_DIR/core/helpers
+mkdir -p $BASE_DIR/core/languages
+mkdir -p $BASE_DIR/core/themes
+mkdir -p $BASE_DIR/core/utils
+touch $BASE_DIR/core/.keep
 
-# ───── Resources ─────
+# Resources
 mkdir -p $BASE_DIR/res
 touch $BASE_DIR/res/assets.dart
+touch $BASE_DIR/res/.keep
 
-# ───── Routes ─────
+# Routes
 mkdir -p $BASE_DIR/routes
 touch $BASE_DIR/routes/pages.dart
 touch $BASE_DIR/routes/routes.dart
+touch $BASE_DIR/routes/.keep
 
-# ───── Views ─────
+# Views
 mkdir -p $BASE_DIR/views/firebase
-mkdir -p $BASE_DIR/views/home/{controller,model,screens}
+mkdir -p $BASE_DIR/views/home/controller
+mkdir -p $BASE_DIR/views/home/model
+mkdir -p $BASE_DIR/views/home/screens
 mkdir -p $BASE_DIR/views/splash
-touch $BASE_DIR/views/splash/scre.dart
+touch $BASE_DIR/views/splash/splash_screen.dart
+touch $BASE_DIR/views/.keep
 
-# ───── Widgets ─────
+# Widgets
 mkdir -p $BASE_DIR/widgets
 touch $BASE_DIR/widgets/initial.dart
+touch $BASE_DIR/widgets/.keep
 
-# ───── Main Entry ─────
+# Main entry
 touch $BASE_DIR/main.dart
 
 echo "✅ Folder and file structure created successfully!"
