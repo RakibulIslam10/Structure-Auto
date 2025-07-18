@@ -52,7 +52,7 @@ awk '
     print "  flutter:"
     print "    sdk: flutter"
     print "  get: ^4.6.6"
-    PRINT "  image_picker: ^1.1.2"
+    print "  image_picker: ^1.1.2"
     exit
   }
 ' > temp_deps.yaml
