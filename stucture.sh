@@ -6,8 +6,6 @@ echo "📁 Creating Your Custom Stucture ..."
 
 # Bindings
 mkdir -p $BASE_DIR/bind
-touch $BASE_DIR/bind/home_binding.dart
-touch $BASE_DIR/bind/next_binding.dart
 touch $BASE_DIR/bind/splash_bindings.dart
 
 # Core folders
@@ -40,8 +38,9 @@ touch $BASE_DIR/widgets/initial.dart
 
 # Main entry
 touch $BASE_DIR/main.dart
+touch $BASE_DIR/initial.dart
 
-echo "✅ Your Structure And All File Folder Created Successfully!"
+echo "✅  Your Structure All File Folder Created Successfully!"
 
 
 
