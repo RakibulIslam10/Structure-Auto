@@ -46,27 +46,10 @@ touch $BASE_DIR/widgets/initial.dart
 ### ✅ Dependencies Section (SAFE)
 
 echo "🔧 Adding dependencies safely to pubspec.yaml..."
+flutter pub add cached_network_image
+flutter pub add image_picker
 
-add_dependency() {
-  local package="$1"
-  local version="$2"
 
-  if grep -q "$package:" pubspec.yaml; then
-    echo "🔁 $package already exists. Skipping..."
-  else
-    if grep -q "^dependencies:" pubspec.yaml; then
-      echo "➕ Adding $package: $version under dependencies"
-      sed -i "/^dependencies:/a\  $package: $version" pubspec.yaml
-    else
-      echo "⚠️ 'dependencies:' section not found. Creating it now..."
-      echo -e "\ndependencies:\n  $package: $version" >> pubspec.yaml
-    fi
-  fi
-}
-
-add_dependency "get" "^4.6.6"
-add_dependency "flutter_svg" "^2.0.7"
-add_dependency "google_fonts" "^6.1.0"
 
 # Run flutter pub get
 echo "📦 Running flutter pub get..."
