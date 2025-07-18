@@ -5,28 +5,35 @@ BASE_DIR="lib"
 
 echo "📁 Creating base structure in $BASE_DIR ..."
 
+# ───── Bindings ─────
 mkdir -p $BASE_DIR/bind
 touch $BASE_DIR/bind/home_binding.dart
 touch $BASE_DIR/bind/next_binding.dart
 touch $BASE_DIR/bind/splash_bindings.dart
 
+# ───── Core folders ─────
 mkdir -p $BASE_DIR/core/{api,helpers,languages,themes,utils}
 
+# ───── Resources ─────
 mkdir -p $BASE_DIR/res
 touch $BASE_DIR/res/assets.dart
 
+# ───── Routes ─────
 mkdir -p $BASE_DIR/routes
 touch $BASE_DIR/routes/pages.dart
 touch $BASE_DIR/routes/routes.dart
 
+# ───── Views ─────
 mkdir -p $BASE_DIR/views/firebase
 mkdir -p $BASE_DIR/views/home/{controller,model,screens}
 mkdir -p $BASE_DIR/views/splash
 touch $BASE_DIR/views/splash/scre.dart
 
+# ───── Widgets ─────
 mkdir -p $BASE_DIR/widgets
 touch $BASE_DIR/widgets/initial.dart
 
+# ───── Main Entry ─────
 touch $BASE_DIR/main.dart
 
 echo "✅ Folder and file structure created successfully!"
