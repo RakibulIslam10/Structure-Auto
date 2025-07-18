@@ -42,3 +42,26 @@ touch $BASE_DIR/widgets/initial.dart
 touch $BASE_DIR/main.dart
 
 echo "✅ Your Structure And All File Folder Created Successfully!"
+
+
+
+
+
+
+
+# FOLDER IN FILE
+touch $BASE_DIR/views/home/screens/navigation_screen_mobile.dart
+touch $BASE_DIR/views/home/screens/navigation_screen.dart
+
+
+
+
+
+# CODE IN MY FILE 
+
+
+
+
+
+
+
