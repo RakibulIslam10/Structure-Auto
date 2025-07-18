@@ -17,9 +17,13 @@ class ${viewName^}Controller extends GetxController {
 }
 EOF
 
-  # Screen
+  # Screen mobile part
   cat <<EOF > "$base_dir/screen/${viewName}_mobile_screen.dart"
-par of "${viewName}_screen.dart"
+part of "${viewName}_screen.dart";
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 class ${viewName^}Screen extends StatelessWidget {
   final controller = Get.put(${viewName^}Controller());
 
@@ -33,17 +37,13 @@ class ${viewName^}Screen extends StatelessWidget {
 }
 EOF
 
-
-
-
-  # Screen 2
+  # Screen main file
   cat <<EOF > "$base_dir/screen/${viewName}_screen.dart"
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/${viewName}_controller.dart';
 
-   part "${viewName}_mobile_screen.dart"
+part "${viewName}_mobile_screen.dart";
 
 class ${viewName^}Screen extends StatelessWidget {
   final controller = Get.put(${viewName^}Controller());
@@ -58,31 +58,5 @@ class ${viewName^}Screen extends StatelessWidget {
 }
 EOF
 
-
-#!/bin/bash
-
-viewName=$1
-shift
-
-widget_dir="lib/views/$viewName/widget"
-mkdir -p "$widget_dir"
-
-for widgetName in "$@"; do
-  file="$widget_dir/${widgetName}.dart"
-  echo "🧱 Generating widget: $widgetName in $widget_dir"
-
-  cat <<EOF > "$file"
-import 'package:flutter/material.dart';
-
-class ${widgetName^}Widget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text('${widgetName^}'),
-    );
-  }
-}
-EOF
-OKAY----
-  echo "✅ View '$viewName' created successfully! "
+  echo "✅ View '$viewName' created successfully!"
 done
