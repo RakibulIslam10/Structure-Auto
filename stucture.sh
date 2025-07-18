@@ -34,23 +34,6 @@ mkdir -p $BASE_DIR/widgets
 touch $BASE_DIR/widgets/initial.dart
 
 
-echo "🔧 Adding dependencies to pubspec.yaml..."
-awk '
-  BEGIN {
-    print "dependencies:"
-    print "  flutter:"
-    print "    sdk: flutter"
-    print "  get: ^4.6.6"
-    print "  image_picker: ^1.1.2"
-    exit
-  }
-' > temp_deps.yaml
-
-mv temp_deps.yaml pubspec.yaml
-
-echo "📦 Running flutter pub get..."
-flutter pub get
-
 touch $BASE_DIR/views/home/screens/navigation_screen_mobile.dart
 touch $BASE_DIR/views/home/screens/navigation_screen.dart
 
