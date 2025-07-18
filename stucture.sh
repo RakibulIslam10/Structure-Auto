@@ -45,9 +45,17 @@ touch $BASE_DIR/widgets/initial.dart
 
 ### ✅ Dependencies Section (SAFE)
 
-echo "🔧 Adding dependencies safely to pubspec.yaml..."
-flutter pub add cached_network_image
-flutter pub add image_picker
+echo "🔧 Adding dependencies to pubspec.yaml..."
+awk '
+  BEGIN {
+    print "dependencies:"
+    print "  flutter:"
+    print "    sdk: flutter"
+    print "  get: ^4.6.6"
+    PRINT "  image_picker: ^1.1.2"
+    exit
+  }
+' > temp_deps.yaml
 
 
 
