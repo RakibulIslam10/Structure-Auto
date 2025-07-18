@@ -41,7 +41,19 @@ touch $BASE_DIR/widgets/initial.dart
 # Main entry
 touch $BASE_DIR/main.dart
 
-echo "✅ Your Structure And All File Folder Created Successfully!"
+echo "➡️ Adding dependencies to pubspec.yaml..."
+cat >> pubspec.yaml <<EOF
+
+dependencies:
+  get: ^4.6.6
+  flutter_svg: ^2.0.7
+  google_fonts: ^6.1.0
+EOF
+
+# Run flutter pub get
+echo "📦 Running flutter pub get..."
+flutter pub get
+
 
 
 
@@ -62,6 +74,7 @@ touch $BASE_DIR/views/home/screens/navigation_screen.dart
 
 
 
+echo "✅ Your Structure And All File Folder Created Successfully!"
 
 
 
