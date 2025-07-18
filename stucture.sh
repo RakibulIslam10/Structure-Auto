@@ -1,12 +1,12 @@
 #!/bin/bash
 # Fix Windows line endings if present (run once on this script file)
-sed -i 's/\r$//' "$
+sed -i 's/\r$//' "$0"
 
-#START SHEL SCRIPT>>
+#START SHELL SCRIPT>>
 
 BASE_DIR="lib"
 
-echo "📁 Creating Your Custom Stucture ..."
+echo "📁 Creating Your Custom Structure ..."
 
 # Bindings
 mkdir -p $BASE_DIR/bind
@@ -57,33 +57,12 @@ awk '
   }
 ' > temp_deps.yaml
 
-
-
 # Run flutter pub get
 echo "📦 Running flutter pub get..."
 flutter pub get
 
-
-
-
-
-
-
-
-# FOLDER IN FILE
+# Additional files
 touch $BASE_DIR/views/home/screens/navigation_screen_mobile.dart
 touch $BASE_DIR/views/home/screens/navigation_screen.dart
 
-
-
-
-
-# CODE IN MY FILE 
-
-
-
-
 echo "✅ Your Structure And All File Folder Created Successfully!"
-
-
-
