@@ -7,7 +7,7 @@ widget_dir="lib/views/$viewName/widget"
 mkdir -p "$widget_dir"
 
 for widgetName in "$@"; do
-  file="$widget_dir/${widgetName}_widget.dart"
+  file="$widget_dir/${widgetName}.dart"
   echo "🧱 Generating widget: $widgetName in $widget_dir"
 
   cat <<EOF > "$file"
@@ -17,11 +17,11 @@ class ${widgetName^}Widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('${widgetName^} Widget'),
+      child: Text('${widgetName^}'),
     );
   }
 }
 EOF
 done
 
-echo "✅ All widgets created inside $widget_dir"
+echo "✅ Widgets created successfully! inside $widget_dir"
