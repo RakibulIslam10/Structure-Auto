@@ -33,6 +33,7 @@ touch $BASE_DIR/views/splash/splash_screen.dart
 mkdir -p $BASE_DIR/widgets
 touch $BASE_DIR/widgets/initial.dart
 
+
 echo "🔧 Adding dependencies to pubspec.yaml..."
 awk '
   BEGIN {
@@ -44,6 +45,8 @@ awk '
     exit
   }
 ' > temp_deps.yaml
+
+mv temp_deps.yaml pubspec.yaml
 
 echo "📦 Running flutter pub get..."
 flutter pub get
