@@ -1,4 +1,8 @@
 #!/bin/bash
+# Fix Windows line endings if present (run once on this script file)
+sed -i 's/\r$//' "$
+
+#START SHEL SCRIPT>>
 
 BASE_DIR="lib"
 
@@ -37,6 +41,7 @@ touch $BASE_DIR/views/splash/splash_screen.dart
 # Widgets
 mkdir -p $BASE_DIR/widgets
 touch $BASE_DIR/widgets/initial.dart
+
 
 ### ✅ Dependencies Section (SAFE)
 
