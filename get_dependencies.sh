@@ -24,12 +24,13 @@ BEGIN {
 /^[a-zA-Z]/ && !copy {
   print "  get: ^4.7.2"
   print "  http: ^0.13.5"
-  print "  shared_preferences: ^2.2.2"
-  print "  google_fonts: ^6.1.0"
-  print "  flutter_svg: ^2.0.7"
-  print "  connectivity_plus: ^5.0.2"
-  print "  cached_network_image: ^3.3.1"
+  print "  get_storage"
+  print "  flutter_svg"
+  print "  loading_animation_widget"
+  print "  pin_code_fields"
+  print "  flutter_animate"
   print "  intl: ^0.18.1"
+  print "  cached_network_image"
   copy = 1
 }
 { if (copy) print }
