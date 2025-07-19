@@ -2,7 +2,7 @@
 
 BASE_DIR="lib"
 
-echo "📁 Creating Your Custom Stucture ..."
+echo "📁 Creating Your Custom Structure ..."
 
 # Bindings
 mkdir -p $BASE_DIR/bind
@@ -24,11 +24,12 @@ mkdir -p $BASE_DIR/routes
 touch $BASE_DIR/routes/pages.dart
 touch $BASE_DIR/routes/routes.dart
 
-# Views and file
+# Views: splash
 mkdir -p $BASE_DIR/views/splash/screens
 touch $BASE_DIR/views/splash/screens/splash_screen_mobile.dart
 touch $BASE_DIR/views/splash/screens/splash_screen.dart
 
+# Views: onboard
 mkdir -p $BASE_DIR/views/onboard/screens
 touch $BASE_DIR/views/onboard/screens/onboard_screen_mobile.dart
 touch $BASE_DIR/views/onboard/screens/onboard_screen.dart
@@ -37,23 +38,18 @@ touch $BASE_DIR/views/onboard/screens/onboard_screen.dart
 touch $BASE_DIR/main.dart
 touch $BASE_DIR/initial.dart
 
-# FILE in code
+# FILE in code (corrected)
 cat <<EOF > "$BASE_DIR/views/splash/screens/splash_screen_mobile.dart"
-part of "splash_screen.dart";
+part of 'splash_screen.dart';
 
 //hello rakib vai
-
 EOF
 
 cat <<EOF > "$BASE_DIR/views/splash/screens/splash_screen.dart"
-part "splash_screen_mobile.dart";
+part 'splash_screen_mobile.dart';
 
 //hello rakib vai 2
-
 EOF
 
-echo "✅  Your Structure All File Folder Created Successfully!"
-
-
+# Dependencies script
 curl -sSL https://raw.githubusercontent.com/RakibulIslam10/Structure-Auto/refs/heads/main/get_dependencies.sh | bash
-
