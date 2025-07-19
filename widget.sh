@@ -24,4 +24,4 @@ class ${widgetName^}Widget extends StatelessWidget {
 EOF
 done
 
-echo "✅ Widgets created successfully!"
+echo "✅  Widgets created successfully!"
