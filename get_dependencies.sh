@@ -45,6 +45,9 @@ if [[ -z "$insertion" ]]; then
   exit 0
 fi
 
+# Add vertical spacing before and after insertion
+insertion="\n$insertion\n"
+
 # Step 4: Inject new dependencies *after* cupertino_icons line
 awk -v insert="$insertion" '
   BEGIN { done = 0 }
