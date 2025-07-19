@@ -8,44 +8,11 @@ capitalize() {
 for viewName in "$@"; do
   capitalizedViewName=$(capitalize "$viewName")
   base_dir="lib/views/$viewName"
-  
-  echo "📦 Generating Your View"
-  
+  echo "📦 Generating view: $viewName"
+
   mkdir -p "$base_dir/controller"
   mkdir -p "$base_dir/screen"
   mkdir -p "$base_dir/widget"
-  
-  echo "📦 Generating Your Bindings"
-  
- BASE_DIR="lib"
- mkdir -p $BASE_DIR/bind
- touch $BASE_DIR/bind/$viewName_bindings.dart
-
-
- echo "📦 Generating Your Routing"
-
-if [ ! -f "$ROUTES_DIR/routes.dart" ]; then
-  cat <<EOF > "$ROUTES_DIR/routes.dart"
-class Routes {
-  // Route constants
-}
-EOF
-fi
-
-if [ ! -f "$ROUTES_DIR/pages.dart" ]; then
-  cat <<EOF > "$ROUTES_DIR/pages.dart"
-part of 'routes.dart';
-
-import 'package:get/get.dart';
-
-class RoutePageList {
-  static List<GetPage> list = [
-    // Pages will be added here
-  ];
-}
-EOF
-fi
-
 
   # Controller
   cat <<EOF > "$base_dir/controller/${viewName}_controller.dart"
