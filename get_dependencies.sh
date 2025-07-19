@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 echo "📦 Adding dependencies to pubspec.yaml..."
 
 # Step 1: Check if pubspec.yaml exists
@@ -7,11 +8,7 @@ if [[ ! -f "pubspec.yaml" ]]; then
     exit 1
 fi
 
-# Step 2: Backup pubspec.yaml
-cp pubspec.yaml pubspec_backup.yaml
-echo "📝 pubspec.yaml backed up as pubspec_backup.yaml"
-
-# Step 3: Inject dependencies directly
+# Step 2: Inject dependencies directly into pubspec.yaml
 awk '
 BEGIN {
   copy = 1
@@ -36,7 +33,7 @@ BEGIN {
 { if (copy) print }
 ' pubspec.yaml > pubspec_temp.yaml && mv pubspec_temp.yaml pubspec.yaml
 
-# Step 4: Run flutter pub get
+# Step 3: Run flutter pub get
 flutter pub get
 
 echo "✅ Dependencies added and fetched successfully!"
