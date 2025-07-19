@@ -64,5 +64,5 @@ class ${capitalizedViewName}Screen extends StatelessWidget {
 }
 EOF
 
-  echo "✅  View '$viewName' created successfully in structure: views/$viewName/"
+  echo "✅  View created successfully"
 done
