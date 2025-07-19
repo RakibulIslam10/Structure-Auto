@@ -48,12 +48,12 @@ fi
 # Add vertical spacing before and after insertion
 insertion="\n$insertion\n"
 
-# Step 4: Inject new dependencies *after* cupertino_icons line
+# Step 4: Inject new dependencies *after* cupertino_icons (handle leading spaces)
 awk -v insert="$insertion" '
   BEGIN { done = 0 }
   {
-    print $0
-    if ($1 == "cupertino_icons:" && done == 0) {
+    print
+    if ($0 ~ /^[[:space:]]+cupertino_icons:/ && done == 0) {
       printf "%s", insert
       done = 1
     }
