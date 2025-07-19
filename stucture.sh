@@ -20,9 +20,6 @@ touch "$BASE_DIR/res/assets.dart"
 mkdir -p "$BASE_DIR/routes"
 touch "$BASE_DIR/routes"/{pages.dart,routes.dart}
 
-# Widgets
-mkdir -p "$BASE_DIR/widgets"
-
 # Views: splash
 mkdir -p "$BASE_DIR/views/splash"/{controller,screens,widget}
 touch "$BASE_DIR/views/splash/screens"/{splash_screen_mobile.dart,splash_screen.dart}
