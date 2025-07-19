@@ -24,13 +24,13 @@ class ${capitalizedViewName}Controller extends GetxController {
 EOF
 
   # Mobile Screen Part
-  cat <<EOF > "$base_dir/screen/${viewName}_mobile_screen.dart"
+  cat <<EOF > "$base_dir/screen/${viewName}_screen_mobile.dart"
 part of "${viewName}_screen.dart";
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ${capitalizedViewName}Screen extends StatelessWidget {
+class ${capitalizedViewName}ScreenMobile extends StatelessWidget {
   final controller = Get.put(${capitalizedViewName}Controller());
 
   @override
