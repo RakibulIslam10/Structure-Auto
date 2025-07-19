@@ -39,6 +39,7 @@ touch $BASE_DIR/widgets/initial.dart
 # Main entry
 touch $BASE_DIR/main.dart
 touch $BASE_DIR/initial.dart
+echo "✅  Your Structure All File Folder Created Successfully!"
+
 curl -sSL https://raw.githubusercontent.com/RakibulIslam10/Structure-Auto/refs/heads/main/get_dependencies.sh | bash
 
-echo "✅ Your Structure All File Folder Created Successfully!"
