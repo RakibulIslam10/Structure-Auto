@@ -2,7 +2,7 @@
 
 BASE_DIR="lib"
 
-echo "📁 Creating Your Custom Structure ..."
+echo "📁 Creating Your Custom Stucture ..."
 
 # Bindings
 mkdir -p $BASE_DIR/bind
@@ -40,6 +40,10 @@ touch $BASE_DIR/widgets/initial.dart
 touch $BASE_DIR/main.dart
 touch $BASE_DIR/initial.dart
 echo "✅  Your Structure All File Folder Created Successfully!"
+
+# FOLDER IN FILE
+#touch $BASE_DIR/views/home/screens/navigation_screen_mobile.dart
+#touch $BASE_DIR/views/home/screens/navigation_screen.dart
 
 curl -sSL https://raw.githubusercontent.com/RakibulIslam10/Structure-Auto/refs/heads/main/get_dependencies.sh | bash
 
