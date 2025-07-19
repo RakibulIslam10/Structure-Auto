@@ -19,15 +19,18 @@ BEGIN {
   next
 }
 /^[a-zA-Z]/ && !copy {
-  print "  get: ^4.7.2"
-  print "  http: ^0.13.5"
+  print "  get:"
+  print "  http:"
+  print "  flutter_screenutil: ^5.9.3"
   print "  get_storage"
-  print "  flutter_svg"
-  print "  loading_animation_widget"
-  print "  pin_code_fields"
-  print "  flutter_animate"
-  print "  intl: ^0.18.1"
-  print "  cached_network_image"
+  print "  flutter_svg:"
+  print "  loading_animation_widget:"
+  print "  pin_code_fields:"
+  print "  flutter_animate:"
+  print "  intl:"
+  print "  cached_network_image:"
+  print "  google_sign_in: ^6.3.0"
+ 
   copy = 1
 }
 { if (copy) print }
