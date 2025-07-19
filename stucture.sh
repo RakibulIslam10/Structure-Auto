@@ -1,159 +1,56 @@
-#!/bin/bash
-
-# Function: capitalize first letter
-capitalize() {
-  echo "$1" | awk '{ print toupper(substr($0,1,1)) tolower(substr($0,2)) }'
-}
+#!/usr/bin/env bash
+set -e  # Error হলে স্ক্রিপ্ট থামবে
 
 BASE_DIR="lib"
-ROUTES_DIR="$BASE_DIR/routes"
 
-mkdir -p "$ROUTES_DIR"
+echo "📁 Creating Your Custom Structure ..."
 
-# Create routes.dart if missing
-if [ ! -f "$ROUTES_DIR/routes.dart" ]; then
-  cat <<EOF > "$ROUTES_DIR/routes.dart"
-class Routes {
-  static var list = RoutePageList.list;
-  // Route constants will be added here
-}
-EOF
-fi
+# Bindings
+mkdir -p "$BASE_DIR/bind"
+touch "$BASE_DIR/bind/splash_bindings.dart"
 
-# Create pages.dart if missing
-if [ ! -f "$ROUTES_DIR/pages.dart" ]; then
-  cat <<EOF > "$ROUTES_DIR/pages.dart"
-part of 'routes.dart';
+# Core folders একসাথে
+mkdir -p "$BASE_DIR/core"/{api,helpers,languages,themes,utils}
 
-import 'package:get/get.dart';
+# Resources
+mkdir -p "$BASE_DIR/res"
+touch "$BASE_DIR/res/assets.dart"
 
-class RoutePageList {
-  static List<GetPage> list = [
-    // Pages will be added here
-  ];
-}
-EOF
-fi
+# Routes
+mkdir -p "$BASE_DIR/routes"
+touch "$BASE_DIR/routes"/{pages.dart,routes.dart}
 
-# Add route constant function
-add_route_constant() {
-  local route_const_name=$1
-  local route_path=$2
-  local file="$ROUTES_DIR/routes.dart"
+# Widgets
+mkdir -p "$BASE_DIR/widgets"
 
-  if ! grep -q "static const $route_const_name" "$file"; then
-    sed -i "/^}/i \  static const $route_const_name = '/$route_path';" "$file"
-  fi
-}
+# Views: splash
+mkdir -p "$BASE_DIR/views/splash"/{controller,screens,widget}
+touch "$BASE_DIR/views/splash/screens"/{splash_screen_mobile.dart,splash_screen.dart}
 
-# Add GetPage entry function
-add_getpage_entry() {
-  local route_const_name=$1
-  local screen_class=$2
-  local binding_class=$3
-  local import_path=$4
-  local file="$ROUTES_DIR/pages.dart"
+# Views: onboard
+mkdir -p "$BASE_DIR/views/onboard"/{controller,screens,widgets}
+touch "$BASE_DIR/views/onboard/screens"/{onboard_screen_mobile.dart,onboard_screen.dart}
 
-  if ! grep -q "import '$import_path';" "$file"; then
-    sed -i "1i import '$import_path';" "$file"
-  fi
+# Main entry files (brace expansion)
+touch "$BASE_DIR"/{main.dart,initial.dart}
 
-  if ! grep -q "name: Routes.$route_const_name" "$file"; then
-    sed -i "/];/i \
-    GetPage(\
-      name: Routes.$route_const_name,\
-      page: () => const $screen_class(),\
-      binding: $binding_class(),\
-      transition: Transition.rightToLeft,\
-    )," "$file"
-  fi
-}
+# Write part directives inside splash screen files
+cat <<EOF > "$BASE_DIR/views/splash/screens/splash_screen_mobile.dart"
+part of 'splash_screen.dart';
 
-for viewName in "$@"; do
-  capitalizedViewName=$(capitalize "$viewName")
-  base_dir="$BASE_DIR/views/$viewName"
-  
-  mkdir -p "$base_dir/controller"
-  mkdir -p "$base_dir/screen"
-  mkdir -p "$base_dir/widget"
-
-  # Controller
-  cat <<EOF > "$base_dir/controller/${viewName}_controller.dart"
-import 'package:get/get.dart';
-
-class ${capitalizedViewName}Controller extends GetxController {
-  // TODO: Add logic
-}
+// hello rakib vai
 EOF
 
-  # Mobile Screen Part
-  cat <<EOF > "$base_dir/screen/${viewName}_screen_mobile.dart"
-part of "${viewName}_screen.dart";
+cat <<EOF > "$BASE_DIR/views/splash/screens/splash_screen.dart"
+part 'splash_screen_mobile.dart';
 
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-class ${capitalizedViewName}ScreenMobile extends StatelessWidget {
-  final controller = Get.put(${capitalizedViewName}Controller());
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('${capitalizedViewName} Mobile')),
-      body: Center(child: Text('${capitalizedViewName} Mobile Screen')),
-    );
-  }
-}
+// hello rakib vai 2
 EOF
 
-  # Main Screen File
-  cat <<EOF > "$base_dir/screen/${viewName}_screen.dart"
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../controller/${viewName}_controller.dart';
+echo "📥 Running Widgets creation script..."
+curl -sSL https://raw.githubusercontent.com/RakibulIslam10/Structure-Auto/refs/heads/main/get_widgets.sh | bash
 
-part "${viewName}_screen_mobile.dart";
+echo "📥 Running Dependencies installation script..."
+curl -sSL https://raw.githubusercontent.com/RakibulIslam10/Structure-Auto/refs/heads/main/get_dependencies.sh | bash
 
-class ${capitalizedViewName}Screen extends StatelessWidget {
-  final controller = Get.put(${capitalizedViewName}Controller());
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('${capitalizedViewName}')),
-      body: Center(child: Text('${capitalizedViewName} Screen')),
-    );
-  }
-}
-EOF
-
-  # Binding file with proper code
-  binding_file="$BASE_DIR/bind/${viewName}_binding.dart"
-  if [ ! -f "$binding_file" ]; then
-    cat <<EOF > "$binding_file"
-import 'package:get/get.dart';
-import '../views/$viewName/controller/${viewName}_controller.dart';
-
-class ${capitalizedViewName}Binding extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut<${capitalizedViewName}Controller>(() => ${capitalizedViewName}Controller());
-  }
-}
-EOF
-    echo "🔧 Created binding with code: $binding_file"
-  else
-    echo "⚠️ Binding already exists: $binding_file"
-  fi
-
-  route_const_name="${viewName}Screen"
-  route_path="$viewName"
-  screen_class="${capitalizedViewName}Screen"
-  binding_class="${capitalizedViewName}Binding"
-  import_path="../views/$viewName/screen/${viewName}_screen.dart"
-
-  add_route_constant "$route_const_name" "$route_path"
-  add_getpage_entry "$route_const_name" "$screen_class" "$binding_class" "$import_path"
-
-  echo "✅ View '$capitalizedViewName' created and routing updated successfully!"
-done
+echo "✅ Your Flutter project structure has been created successfully!"
