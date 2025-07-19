@@ -8,7 +8,7 @@ if [[ ! -f "pubspec.yaml" ]]; then
     exit 1
 fi
 
-# Step 2: List of required dependencies
+# Step 2: Define dependencies to inject
 declare -A dependencies=(
   ["get"]=""
   ["http"]=""
@@ -23,16 +23,15 @@ declare -A dependencies=(
   ["google_sign_in"]="^6.3.0"
 )
 
-# Step 3: Read existing pubspec.yaml content
-existing_deps=$(grep -Po '^\s{2}(\w+):' pubspec.yaml | sed 's/ //g' | sed 's/://g')
+# Step 3: Parse existing pubspec.yaml to avoid duplicates
+existing=$(grep -Po '^\s{2,}(\w+):' pubspec.yaml | sed 's/ //g' | sed 's/://g')
 
-# Step 4: Create insertion block with missing dependencies only
 insertion=""
 for dep in "${!dependencies[@]}"; do
-  if echo "$existing_deps" | grep -q "^$dep$"; then
+  if echo "$existing" | grep -q "^$dep$"; then
     echo "⚠️  $dep already exists, skipping..."
   else
-    version="${dependencies[$dep]}"
+    version=${dependencies[$dep]}
     if [[ -n "$version" ]]; then
       insertion+="  $dep: $version\n"
     else
@@ -41,27 +40,24 @@ for dep in "${!dependencies[@]}"; do
   fi
 done
 
-# If no new dependency, skip modification
 if [[ -z "$insertion" ]]; then
   echo "✅  All dependencies already present. Nothing to add."
   exit 0
 fi
 
-# Step 5: Inject after `dependencies:` block
-awk -v insertion="$insertion" '
+# Step 4: Inject new dependencies *after* cupertino_icons line
+awk -v insert="$insertion" '
   BEGIN { done = 0 }
-  /^dependencies:/ {
-    print
-    if (!done) {
-      printf "%s", insertion
+  {
+    print $0
+    if ($1 == "cupertino_icons:" && done == 0) {
+      printf "%s", insert
       done = 1
     }
-    next
   }
-  { print }
 ' pubspec.yaml > pubspec_temp.yaml && mv pubspec_temp.yaml pubspec.yaml
 
-# Step 6: Run flutter pub get
+# Step 5: Run pub get
 flutter pub get
 
-echo "✅  Missing dependencies added successfully! >>> RUN-- flutter pub get"
+echo "✅  All dependencies added successfully!"
