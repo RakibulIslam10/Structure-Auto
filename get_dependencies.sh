@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 echo "📦 Adding dependencies to pubspec.yaml..."
 
 # Step 1: Check if pubspec.yaml exists
