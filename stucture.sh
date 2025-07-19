@@ -25,11 +25,11 @@ touch $BASE_DIR/routes/pages.dart
 touch $BASE_DIR/routes/routes.dart
 
 # Views and file
-mkdir -p $BASE_DIR/views/splash
+mkdir -p $BASE_DIR/views/splash/screens
 touch $BASE_DIR/views/splash/screens/splash_screen_mobile.dart
 touch $BASE_DIR/views/splash/screens/splash_screen.dart
 
-mkdir -p $BASE_DIR/views/onboard
+mkdir -p $BASE_DIR/views/onboard/screens
 touch $BASE_DIR/views/splash/screens/onboard_screen_mobile.dart
 touch $BASE_DIR/views/splash/screens/onboard_screen.dart
 
@@ -46,7 +46,7 @@ part of "splash_screen_mobile.dart"
 EOF
 
 cat <<EOF > "$BASE_DIR/views/splash/screens/splash_screen.dart"
-part of "splash_screen_mobile.dart"
+part "splash_screen_mobile.dart"
 
 //hello rakib vai 2
 
