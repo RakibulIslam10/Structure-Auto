@@ -8,17 +8,26 @@ if [[ ! -f "pubspec.yaml" ]]; then
     exit 1
 fi
 
-# Step 2: Inject dependencies directly into pubspec.yaml
+# Step 2: Inject dependencies under flutter section
 awk '
 BEGIN {
-  copy = 1
+  injecting = 0
 }
 /^dependencies:/ {
   print
-  copy = 0
   next
 }
-/^[a-zA-Z]/ && !copy {
+/^  flutter:/ {
+  print
+  flutter_found = 1
+  next
+}
+/^  cupertino_icons:/ {
+  print
+  next
+}
+/^[^[:space:]]/ && flutter_found && !injecting {
+  # Add custom dependencies only once
   print "  get:"
   print "  http:"
   print "  flutter_screenutil: ^5.9.3"
@@ -30,13 +39,12 @@ BEGIN {
   print "  intl:"
   print "  cached_network_image:"
   print "  google_sign_in: ^6.3.0"
- 
-  copy = 1
+  injecting = 1
 }
-{ if (copy) print }
+{ print }
 ' pubspec.yaml > pubspec_temp.yaml && mv pubspec_temp.yaml pubspec.yaml
 
 # Step 3: Run flutter pub get
 flutter pub get
 
-echo "✅  Dependencies added and fetched successfully!"
+echo "✅  All Dependencies added successfully!  >>> RUN-- flutter pub get"
