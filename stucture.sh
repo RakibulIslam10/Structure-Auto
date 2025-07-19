@@ -46,7 +46,7 @@ part of "splash_screen_mobile.dart"
 EOF
 
 cat <<EOF > "$BASE_DIR/views/splash/screens/splash_screen.dart"
-part "splash_screen_mobile.dart"
+part "splash_screen.dart"
 
 //hello rakib vai 2
 
