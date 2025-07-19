@@ -22,7 +22,7 @@ BEGIN {
   print "  get:"
   print "  http:"
   print "  flutter_screenutil: ^5.9.3"
-  print "  get_storage"
+  print "  get_storage:"
   print "  flutter_svg:"
   print "  loading_animation_widget:"
   print "  pin_code_fields:"
@@ -39,4 +39,4 @@ BEGIN {
 # Step 3: Run flutter pub get
 flutter pub get
 
-echo "✅ Dependencies added and fetched successfully!"
+echo "✅  Dependencies added and fetched successfully!"
