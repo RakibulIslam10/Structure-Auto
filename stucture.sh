@@ -24,6 +24,9 @@ mkdir -p $BASE_DIR/routes
 touch $BASE_DIR/routes/pages.dart
 touch $BASE_DIR/routes/routes.dart
 
+# Widgets
+mkdir -p $BASE_DIR/widgets
+
 # Views: splash
 mkdir -p $BASE_DIR/views/splash/controller
 mkdir -p $BASE_DIR/views/splash/screens
