@@ -49,7 +49,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/${viewName}_controller.dart';
 
-part "${viewName}_mobile_screen.dart";
+part "${viewName}_screen_mobile.dart";
 
 class ${capitalizedViewName}Screen extends StatelessWidget {
   final controller = Get.put(${capitalizedViewName}Controller());
