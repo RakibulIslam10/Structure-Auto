@@ -30,8 +30,8 @@ touch $BASE_DIR/views/splash/screens/splash_screen_mobile.dart
 touch $BASE_DIR/views/splash/screens/splash_screen.dart
 
 mkdir -p $BASE_DIR/views/onboard/screens
-touch $BASE_DIR/views/splash/screens/onboard_screen_mobile.dart
-touch $BASE_DIR/views/splash/screens/onboard_screen.dart
+touch $BASE_DIR/views/onboard/screens/onboard_screen_mobile.dart
+touch $BASE_DIR/views/onboard/screens/onboard_screen.dart
 
 # Main entry
 touch $BASE_DIR/main.dart
