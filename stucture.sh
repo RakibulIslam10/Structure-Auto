@@ -25,12 +25,16 @@ touch $BASE_DIR/routes/pages.dart
 touch $BASE_DIR/routes/routes.dart
 
 # Views: splash
+mkdir -p $BASE_DIR/views/splash/controller
 mkdir -p $BASE_DIR/views/splash/screens
+mkdir -p $BASE_DIR/views/splash/widget
 touch $BASE_DIR/views/splash/screens/splash_screen_mobile.dart
 touch $BASE_DIR/views/splash/screens/splash_screen.dart
 
 # Views: onboard
+mkdir -p $BASE_DIR/views/onboard/controller
 mkdir -p $BASE_DIR/views/onboard/screens
+mkdir -p $BASE_DIR/views/onboard/widgets
 touch $BASE_DIR/views/onboard/screens/onboard_screen_mobile.dart
 touch $BASE_DIR/views/onboard/screens/onboard_screen.dart
 
