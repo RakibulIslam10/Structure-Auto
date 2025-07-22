@@ -44,8 +44,6 @@ part 'splash_screen_mobile.dart';
 // hello rakib vai 2
 EOF
 
-echo "📥 Running Widgets creation script..."
-curl -sSL https://raw.githubusercontent.com/RakibulIslam10/Structure-Auto/refs/heads/main/get_widgets.sh | bash
 
 echo "📥 Running Dependencies installation script..."
 curl -sSL https://raw.githubusercontent.com/RakibulIslam10/Structure-Auto/refs/heads/main/get_dependencies.sh | bash
