@@ -26,6 +26,21 @@ create_route_and_binding() {
   echo "    )," >> lib/routes/pages.dart
 }
 
+# Function to update Routes class with new route constants
+update_routes_class() {
+  capitalizedViewName=$(capitalize "$1")
+  viewName="$1"
+
+  # Check if Routes class exists, if not create it
+  if ! grep -q "class Routes" "lib/routes/routes.dart"; then
+    echo "class Routes {" > lib/routes/routes.dart
+    echo "  static var list = RoutePageList.list;" >> lib/routes/routes.dart
+  fi
+
+  # Add new route constant to Routes class
+  echo "  static const ${viewName}Screen = '/${viewName}Screen';" >> lib/routes/routes.dart
+}
+
 # Iterate over all view names provided as arguments
 for viewName in "$@"; do
   capitalizedViewName=$(capitalize "$viewName")
@@ -89,6 +104,9 @@ EOF
 
   # Create route and binding
   create_route_and_binding "$viewName"
+
+  # Update Routes class with new route constant
+  update_routes_class "$viewName"
 
   echo "✅  View created successfully"
 done
