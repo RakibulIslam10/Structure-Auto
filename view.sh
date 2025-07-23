@@ -24,19 +24,6 @@ create_route_and_binding() {
   echo "  binding: ${capitalizedViewName}Binding()," >> lib/routes/routes.dart
   echo "  transition: Transition.rightToLeft," >> lib/routes/routes.dart
   echo "), " >> lib/routes/routes.dart
-
-  # Create the binding file
-  cat <<EOF > "lib/bind/${viewName}_binding.dart"
-import 'package:get/get.dart';
-import '../controller/${viewName}_controller.dart';
-
-class ${capitalizedViewName}Binding extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => ${capitalizedViewName}Controller());
-  }
-}
-EOF
 }
 
 # Iterate over all view names provided as arguments
