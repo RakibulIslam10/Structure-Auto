@@ -10,20 +10,20 @@ create_route_and_binding() {
   capitalizedViewName=$(capitalize "$1")
   viewName="$1"
   
-  # Check if routes.dart exists, if not create it
-  if [ ! -f "lib/routes/routes.dart" ]; then
-    echo "lib/routes/routes.dart not found. Creating the file..."
+  # Check if pages.dart exists, if not create it
+  if [ ! -f "lib/routes/pages.dart" ]; then
+    echo "lib/routes/pages.dart not found. Creating the file..."
     mkdir -p lib/routes
-    touch lib/routes/routes.dart
+    touch lib/routes/pages.dart
   fi
 
-  # Add the route to routes.dart
-  echo "GetPage(" >> lib/routes/routes.dart
-  echo "  name: Routes.${capitalizedViewName}," >> lib/routes/routes.dart
-  echo "  page: () => const ${capitalizedViewName}Screen()," >> lib/routes/routes.dart
-  echo "  binding: ${capitalizedViewName}Binding()," >> lib/routes/routes.dart
-  echo "  transition: Transition.rightToLeft," >> lib/routes/routes.dart
-  echo "), " >> lib/routes/routes.dart
+  # Add the route to pages.dart inside the RoutePageList class
+  echo "    GetPage(" >> lib/routes/pages.dart
+  echo "      name: Routes.${capitalizedViewName}," >> lib/routes/pages.dart
+  echo "      page: () => const ${capitalizedViewName}Screen()," >> lib/routes/pages.dart
+  echo "      binding: ${capitalizedViewName}Binding()," >> lib/routes/pages.dart
+  echo "      transition: Transition.rightToLeft," >> lib/routes/pages.dart
+  echo "    )," >> lib/routes/pages.dart
 }
 
 # Iterate over all view names provided as arguments
