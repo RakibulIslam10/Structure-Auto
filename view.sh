@@ -19,7 +19,7 @@ create_route_and_binding() {
 
   # Add the route to pages.dart inside the RoutePageList class
   echo "    GetPage(" >> lib/routes/pages.dart
-  echo "      name: Routes.${capitalizedViewName}," >> lib/routes/pages.dart
+  echo "      name: Routes.${capitalizedViewName}Screen," >> lib/routes/pages.dart
   echo "      page: () => const ${capitalizedViewName}Screen()," >> lib/routes/pages.dart
   echo "      binding: ${capitalizedViewName}Binding()," >> lib/routes/pages.dart
   echo "      transition: Transition.rightToLeft," >> lib/routes/pages.dart
@@ -38,7 +38,7 @@ update_routes_class() {
   fi
 
   # Add new route constant to Routes class
-  echo "  static const ${viewName}Screen = '/${viewName}Screen';" >> lib/routes/routes.dart
+  echo "  static const ${capitalizedViewName}Screen = '/${capitalizedViewName}Screen';" >> lib/routes/routes.dart
 }
 
 # Iterate over all view names provided as arguments
