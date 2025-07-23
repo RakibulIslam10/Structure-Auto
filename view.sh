@@ -32,16 +32,18 @@ class ${capitalizedViewName}Binding extends Bindings {
 EOF
 }
 
+# Iterate over all view names provided as arguments
 for viewName in "$@"; do
   capitalizedViewName=$(capitalize "$viewName")
   base_dir="lib/views/$viewName"
   echo "📦 Generating view: $viewName"
 
+  # Create necessary directories
   mkdir -p "$base_dir/controller"
   mkdir -p "$base_dir/screen"
   mkdir -p "$base_dir/widget"
 
-  # Controller
+  # Controller file creation
   cat <<EOF > "$base_dir/controller/${viewName}_controller.dart"
 import 'package:get/get.dart';
 
@@ -50,7 +52,7 @@ class ${capitalizedViewName}Controller extends GetxController {
 }
 EOF
 
-  # Mobile Screen Part
+  # Mobile Screen Part file creation
   cat <<EOF > "$base_dir/screen/${viewName}_screen_mobile.dart"
 part of "${viewName}_screen.dart";
 
@@ -70,7 +72,7 @@ class ${capitalizedViewName}ScreenMobile extends StatelessWidget {
 }
 EOF
 
-  # Main Screen File
+  # Main Screen file creation
   cat <<EOF > "$base_dir/screen/${viewName}_screen.dart"
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -85,13 +87,13 @@ class ${capitalizedViewName}Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('${capitalizedViewName}')),
-      body: Center(child: Text('${capitalizedViewName} Screen'))),
+      body: Center(child: Text('${capitalizedViewName} Screen')),
     );
   }
 }
 EOF
 
-  # রুট এবং ব্যান্ডিং তৈরি করা
+  # Create route and binding
   create_route_and_binding "$viewName"
 
   echo "✅  View created successfully"
