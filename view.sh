@@ -10,7 +10,14 @@ create_route_and_binding() {
   capitalizedViewName=$(capitalize "$1")
   viewName="$1"
   
-  # রুট ফাইল যোগ করা
+  # Check if routes.dart exists, if not create it
+  if [ ! -f "lib/routes/routes.dart" ]; then
+    echo "lib/routes/routes.dart not found. Creating the file..."
+    mkdir -p lib/routes
+    touch lib/routes/routes.dart
+  fi
+
+  # Add the route to routes.dart
   echo "GetPage(" >> lib/routes/routes.dart
   echo "  name: Routes.${capitalizedViewName}," >> lib/routes/routes.dart
   echo "  page: () => const ${capitalizedViewName}Screen()," >> lib/routes/routes.dart
@@ -18,7 +25,7 @@ create_route_and_binding() {
   echo "  transition: Transition.rightToLeft," >> lib/routes/routes.dart
   echo "), " >> lib/routes/routes.dart
 
-  # ব্যান্ডিং ফাইল তৈরি করা
+  # Create the binding file
   cat <<EOF > "lib/bind/${viewName}_binding.dart"
 import 'package:get/get.dart';
 import '../controller/${viewName}_controller.dart';
@@ -43,7 +50,7 @@ for viewName in "$@"; do
   mkdir -p "$base_dir/screen"
   mkdir -p "$base_dir/widget"
 
-  # Controller file creation
+  # Create Controller file
   cat <<EOF > "$base_dir/controller/${viewName}_controller.dart"
 import 'package:get/get.dart';
 
@@ -52,7 +59,7 @@ class ${capitalizedViewName}Controller extends GetxController {
 }
 EOF
 
-  # Mobile Screen Part file creation
+  # Create Mobile Screen file
   cat <<EOF > "$base_dir/screen/${viewName}_screen_mobile.dart"
 part of "${viewName}_screen.dart";
 
@@ -72,7 +79,7 @@ class ${capitalizedViewName}ScreenMobile extends StatelessWidget {
 }
 EOF
 
-  # Main Screen file creation
+  # Create Main Screen file
   cat <<EOF > "$base_dir/screen/${viewName}_screen.dart"
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
