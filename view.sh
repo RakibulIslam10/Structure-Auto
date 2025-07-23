@@ -17,7 +17,7 @@ create_route_and_binding() {
     touch lib/routes/pages.dart
   fi
 
-  # Add the route to pages.dart inside the RoutePageList class
+  # Ensure we're inside the list and add the new route
   echo "    GetPage(" >> lib/routes/pages.dart
   echo "      name: Routes.${capitalizedViewName}Screen," >> lib/routes/pages.dart
   echo "      page: () => const ${capitalizedViewName}Screen()," >> lib/routes/pages.dart
