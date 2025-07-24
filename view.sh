@@ -67,7 +67,11 @@ EOF
   # 👇 Route code 
   page_file="lib/routes/pages.dart"
 
-sed -i "/\/\/Page Route List/a rakib// vai," "$page_file"
+sed -i "/\/\/Page Route List/a 
+
+rakib,//
+
+vai," "$page_file"
 
   echo "✅  View created successfully"
 done
