@@ -68,8 +68,8 @@ EOF
   page_file="lib/routes/pages.dart"
 
   sed -i "/\/\/Page Route List/a \\
-rakib,//
-hasan,//
+rakib, /
+hasan,
 " "$page_file"
 
   echo "✅  View created successfully"
