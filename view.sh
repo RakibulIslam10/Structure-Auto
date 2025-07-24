@@ -64,5 +64,16 @@ class ${capitalizedViewName}Screen extends StatelessWidget {
 }
 EOF
 
+  # 👇 এই অংশটি এখানে রাখতে হবে, EOF-এর বাইরে
+  page_file="lib/routes/pages.dart"
+
+  sed -i "/\/\/ here akhane add korte chai/a \\
+    GetPage(\\
+      name: Routes.$viewName,\\
+      page: () => const ${capitalizedViewName}Screen(),\\
+      binding: ${capitalizedViewName}Binding(),\\
+      transition: Transition.rightToLeft,\\
+    )," "$page_file"
+
   echo "✅  View created successfully"
 done
