@@ -66,13 +66,13 @@ EOF
 
 page_file="lib/routes/pages.dart"
 
-  sed -i "/\/\/Page Route List/a \\
-    GetPage(\\
-      name: Routes.$viewName,\\
-      page: () => const ${capitalizedViewName}Screen(),\\
-      binding: ${capitalizedViewName}Binding(),\\
-      transition: Transition.rightToLeft,\\
+sed -i "/\/\/Page Route List/a \ 
+    GetPage(\n\
+      name: Routes.\$viewName,\n\
+      page: () => const \${capitalizedViewName}Screen(),\n\
+      binding: \${capitalizedViewName}Binding(),\n\
+      transition: Transition.rightToLeft,\n\
     )," "$page_file"
-
+    
   echo "✅  View created successfully"
 done
