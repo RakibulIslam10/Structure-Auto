@@ -67,7 +67,7 @@ EOF
   # 👇 Route code 
   page_file="lib/routes/pages.dart"
 
-sed -i "/\/\/Page Route List/a   GetPage(\n  name: Routes.splashScreen,\n  page: () => const SplashScreen(),\n  binding: SplashBinding(), \n)" "$page_file"
+sed -i "/\/\/Page Route List/a   GetPage(\n  name: Routes.splashScreen,\n  page: () => const SplashScreen(),\n  binding: SplashBinding(), \n)," "$page_file"
 
 
   echo "✅  View created successfully"
