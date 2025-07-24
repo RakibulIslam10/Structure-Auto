@@ -64,15 +64,17 @@ class ${capitalizedViewName}Screen extends StatelessWidget {
 }
 EOF
 
+# Add new route to the routes file
 page_file="lib/routes/pages.dart"
 
+# Updated sed command for correct escaping of variables
 sed -i "/\/\/Page Route List/a \ 
     GetPage(\n\
-      name: Routes.\$viewName,\n\
-      page: () => const \${capitalizedViewName}Screen(),\n\
-      binding: \${capitalizedViewName}Binding(),\n\
+      name: Routes.${viewName},\n\
+      page: () => const ${capitalizedViewName}Screen(),\n\
+      binding: ${capitalizedViewName}Binding(),\n\
       transition: Transition.rightToLeft,\n\
     )," "$page_file"
-    
+
   echo "✅  View created successfully"
 done
