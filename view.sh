@@ -70,8 +70,9 @@ EOF
 sed -i "/\/\/Page Route List/a 
 
 rakib,//
-
-vai," "$page_file"
+vai,//
+rakibb,
+" "$page_file"
 
   echo "✅  View created successfully"
 done
