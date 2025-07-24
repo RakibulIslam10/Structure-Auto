@@ -67,7 +67,7 @@ EOF
   # 👇 এই অংশটি এখানে রাখতে হবে, EOF-এর বাইরে
   page_file="lib/routes/pages.dart"
 
-  sed -i "/\/\/ here akhane add korte chai/a \\
+  sed -i "/\/\/ Page Route List/a \\
     GetPage(\\
       name: Routes.$viewName,\\
       page: () => const ${capitalizedViewName}Screen(),\\
