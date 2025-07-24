@@ -68,7 +68,7 @@ EOF
   page_file="lib/routes/pages.dart"
 
   sed -i "/\/\/Page Route List/a \\
-rakib//
+rakib,//
 vai,
 " "$page_file"
 
