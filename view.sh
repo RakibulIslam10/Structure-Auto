@@ -64,7 +64,7 @@ class ${capitalizedViewName}Screen extends StatelessWidget {
 }
 EOF
 
-  # 👇 এই অংশটি এখানে রাখতে হবে, EOF-এর বাইরে
+  # 👇 Route code 
   page_file="lib/routes/pages.dart"
 
   sed -i "/\/\/Page Route List/a \\
