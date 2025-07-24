@@ -67,7 +67,7 @@ EOF
   # 👇 এই অংশটি এখানে রাখতে হবে, EOF-এর বাইরে
   page_file="lib/routes/pages.dart"
 
-  sed -i "/\/\/Page Route List/a \\
+  sed -i "/\/\/Page Route List/a \
 rakib, /
 hasan,
 " "$page_file"
